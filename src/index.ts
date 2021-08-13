@@ -12,7 +12,7 @@ const regex = /\{{[^{]+}}/g,
       .slice(2, -2)
       .split(or)
       .map((values) => values.trim());
-    return { key: values[0], defaultValue: values[1] };
+    return values[0];
   };
 
 /**
@@ -30,7 +30,7 @@ const regex = /\{{[^{]+}}/g,
  * ```
  * @author 최준영 <98.junyeong@gmail.com>
  */
-export const stringInterpolation = (string: string, data: any) => {
+export const stringInterpolation = (string: string, data: object) => {
   if (typeof string !== "string" || typeof data !== "object") return;
   return string.replace(regex, (match) => replacer(match, data));
 };
@@ -48,5 +48,12 @@ export const stringInterpolation = (string: string, data: any) => {
  */
 export const parseInterpolation = (string: string) => {
   if (typeof string !== "string") return;
-  return string.match(regex)?.map((match) => parserReplacer(match));
+  const matched = string.match(regex);
+  if (matched) {
+    return matched
+      .map((match) => parserReplacer(match))
+      .filter((key, index, array) => array.indexOf(key) === index);
+  }
+
+  return string;
 };
