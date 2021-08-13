@@ -42,7 +42,7 @@ export const stringInterpolation = (string: string, data: object) => {
  * @example
  * ```
  * const t = "Hello, {{name || dude}}!";
- * parseInterpolation(t); // [{key: name, defaultValue: "dude"}]
+ * parseInterpolation(t); // ["name"]
  * ```
  *  * @author 최준영 <98.junyeong@gmail.com>
  */

@@ -33,5 +33,5 @@ Parse interpolation function
 
 ```js
 const t = "Hello, {{name || dude}}!";
-parseInterpolation(t); // [{key: name, defaultValue: "dude"}]
+parseInterpolation(t); // ["name"]
 ```
