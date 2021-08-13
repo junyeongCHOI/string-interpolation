@@ -1,0 +1,12 @@
+{
+  "compilerOptions": {
+    "target": "ES2015",
+    "module": "commonJs",
+    "declaration": true,
+    "outDir": "",
+    "strict": true,
+    "lib": ["ES2017", "dom"],
+    "removeComments": false
+  },
+  "include": ["./src"]
+}
