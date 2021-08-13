@@ -1,6 +1,6 @@
 {
   "name": "strings-interpolation",
-  "version": "1.0.1",
+  "version": "1.1.0",
   "description": "String interpolation functions",
   "author": "junyeong CHOI <98.junyeong@gmail.com>",
   "repository": "https://github.com/junyeongCHOI/strings-interpolation",
@@ -16,7 +16,7 @@
     "build": "tsc && npm run minify",
     "test": "jest",
     "test:cov": "jest --coverage --runInBand --silent",
-    "publish": "npm run build && npm publish"
+    "prepare": "npm run build"
   },
   "keywords": [
     "string interpolation",
