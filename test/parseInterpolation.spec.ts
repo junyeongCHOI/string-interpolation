@@ -30,7 +30,7 @@ describe("parseInterpolation", () => {
 
   it("should return same string", () => {
     const parsed = parseInterpolation("test");
-    expect(parsed).toEqual("test");
+    expect(parsed).toEqual(undefined);
   });
 
   it("should match even if string has weird indent", () => {

@@ -48,12 +48,8 @@ export const stringInterpolation = (string: string, data: object) => {
  */
 export const parseInterpolation = (string: string) => {
   if (typeof string !== "string") return;
-  const matched = string.match(regex);
-  if (matched) {
-    return matched
-      .map((match) => parserReplacer(match))
-      .filter((key, index, array) => array.indexOf(key) === index);
-  }
-
-  return string;
+  return string
+    .match(regex)
+    ?.map((match) => parserReplacer(match))
+    .filter((key, index, array) => array.indexOf(key) === index);
 };
