@@ -1,6 +1,6 @@
 # string-interpolation
 
-String template with default value.
+Strings template with default value.
 
 # 🛠Install
 
