@@ -1,11 +1,48 @@
+function traverseAndFlatten(
+  currentNode: Record<string, any>,
+  target: Record<string, any>,
+  flattenedKey?: string
+) {
+  for (var key in currentNode) {
+    if (currentNode.hasOwnProperty(key)) {
+      var newKey;
+      if (flattenedKey === undefined) {
+        newKey = key;
+      } else {
+        newKey = flattenedKey + "." + key;
+      }
+
+      var value = currentNode[key];
+      if (typeof value === "object") {
+        traverseAndFlatten(value, target, newKey);
+      } else {
+        target[newKey] = value;
+      }
+    }
+  }
+}
+
+function flatten(obj: Record<string, any>): Record<string, string> {
+  const flattenedObject = {};
+  traverseAndFlatten(obj, flattenedObject);
+  return flattenedObject;
+}
+
 const regex = /\{{[^{]+}}/g,
   or = "||",
   replacer = (match: string, data: any) => {
+    const flattendedObject = flatten(data);
+
     const values = match
       .slice(2, -2)
       .split(or)
       .map((v) => v.trim());
-    return data[values[0]] || values[1] || "";
+
+    return flattendedObject[values[0]] === undefined
+      ? values[1] === undefined
+        ? ""
+        : values[1]
+      : flattendedObject[values[0]];
   },
   parserReplacer = (match: string) => {
     const values = match

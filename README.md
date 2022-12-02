@@ -15,14 +15,13 @@ npm install --save string-interpolation
 String interpolation function.
 
 - string: Template string that includes {{ key }} or {{ key || defaultValue }}.
-- data: Data(Record<string, string> or string[]) to match key in template string.
-- If data[key] is falsy value (false, 0, -0, 0n, "", null, undefined, NaN), will return defaultValue or "".  
-  **Data must be flat.**
+- data: Data(Record<string, any>) to match key in template string.
+- If data[key] is undefined or null, will return defaultValue or "".
 
 ```js
-const t = "Hello, {{name || dude}}!";
-stringInterpolate(t, { name: "준영" }); // "Hello, 준영!"
-stringInterpolate(t, {}); // "Hello, dude!"
+const t = "Hello, {{name || dude}}! {{info.age || 0}}";
+stringInterpolate(t, { name: "준영", info: { age: 25 } }); // "Hello, 준영! 25"
+stringInterpolate(t, {}); // "Hello, dude! 0"
 ```
 
 ## parseInterpolation(string: string)
