@@ -1,11 +1,11 @@
-# string-interpolation
+# strings-interpolation
 
 Strings template with default value.
 
 # 🛠Install
 
 ```bash
-npm install --save string-interpolation
+npm install --save strings-interpolation
 ```
 
 # 💅 Basic Usage
