@@ -1,36 +1,48 @@
 # strings-interpolation
 
-Strings template with default value.
+Elevate your JavaScript development with strings-interpolation, a powerful tool for crafting dynamic template strings with built-in default value functionality.
 
-# 🛠Install
+## Installation
 
 ```bash
 npm install --save strings-interpolation
 ```
 
-# 💅 Basic Usage
+## API
 
-## stringInterpolation(string: string, data: any)
+### stringInterpolation(string: string, data: any): string
 
-String interpolation function.
+Dynamically interpolates a template string using provided data.
 
-- string: Template string that includes {{ key }} or {{ key || defaultValue }}.
-- data: Data(Record<string, any>) to match key in template string.
-- If data[key] is undefined or null, will return defaultValue or "".
+- Parameters:
+  - string: The template string containing placeholders like {{ key }} or {{ key || defaultValue }}.
+  - data: An object (Record<string, any>) matching keys in the template string.
+- Returns: The interpolated string. If a key in the template is not found in the data object, the function uses the defaultValue specified in the template, or an empty string if no default is provided.
 
-```js
-const t = "Hello, {{name || dude}}! {{info.age || 0}}";
-stringInterpolate(t, { name: "준영", info: { age: 25 } }); // "Hello, 준영! 25"
-stringInterpolate(t, {}); // "Hello, dude! 0"
-```
+- Example:
 
-## parseInterpolation(string: string)
+  ```javascript
+  const template = "Hello, {{name || guest}}! Score: {{score || 0}}";
+  const interpolatedString = stringInterpolation(template, {
+    name: "John",
+    score: 42,
+  });
+  // Output: "Hello, John! Score: 42"
+  ```
 
-Parse interpolation function
+### parseInterpolation(string: string): string[]
 
-- string: String that includes {{ key }} or {{ key || defaultValue }}.
+Analyzes a template string and extracts the keys and their respective default values.
 
-```js
-const t = "Hello, {{name || dude}}!";
-parseInterpolation(t); // ["name"]
-```
+- Parameters:
+
+  - string: A string containing template placeholders.
+  - Returns: An array of keys used in the template. If a default value is provided for a key, it is included in the format key || defaultValue.
+
+- Example:
+  ```javascript
+  const template =
+    "Welcome, {{user || visitor}}! Your access level: {{level || standard}}";
+  const keys = parseInterpolation(template);
+  // Output: ["user", "level"]
+  ```
