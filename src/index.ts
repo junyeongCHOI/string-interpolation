@@ -20,7 +20,7 @@ function flatten(obj: Record<string, any>): Record<string, string> {
   return flattenedObject;
 }
 
-const regex = /\{\{([^{}]+)\}\}/g;
+const regex = /\{\{([^{}]*?)\}\}/g;
 
 function interpolateValue(match: string, data: Record<string, any>) {
   const [key, defaultValue = ""] = match.split("||").map((v) => v.trim());

@@ -8,6 +8,13 @@ describe("stringInterpolation", () => {
     expect(interpolated).toEqual("test test test");
   });
 
+  it("should match single key + }", () => {
+    const interpolated = stringInterpolation("test {{test}}} test", {
+      test: "test",
+    });
+    expect(interpolated).toEqual("test test} test");
+  });
+
   it("should match multiple keys", () => {
     const interpolated = stringInterpolation("test {{test}} {{test}}", {
       test: "test",
